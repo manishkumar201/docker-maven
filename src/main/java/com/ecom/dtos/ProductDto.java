@@ -14,7 +14,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 public class ProductDto {
-private String id;
+	
+	private String id;
 	
 	private int quantity;
 	
@@ -23,6 +24,8 @@ private String id;
 	
 	@NotBlank(message = "message field cant be empty")
 	private String model;
+	
+	private CategoryDto category;
 	
 	private int price;
 }

@@ -27,6 +27,21 @@ public class ProductServicesImpl implements ProductServices{
 	@Autowired
 	private ModelMapper mapper;
 	
+	//--------------APIs--------------
+	@Override
+	public List<ProductDto> getAllProduct() {
+		List<Product> findAllproducts = productRepository.findAll();
+		List<ProductDto> productDtosList = findAllproducts.stream()
+				.map(product -> mapper.map(product, ProductDto.class)).collect(Collectors.toList());
+		return productDtosList;
+	}
+	
+	@Override
+	public ProductDto getProduct(String productDtoId) {
+		Product product = productRepository.findById(productDtoId).orElse(null);
+		return mapper.map(product, ProductDto.class);
+	}
+	
 	@Override
 	public ProductDto addProduct(ProductDto productDto) {
 		Product product = mapper.map(productDto, Product.class);
@@ -53,19 +68,9 @@ public class ProductServicesImpl implements ProductServices{
 		productRepository.deleteById(productDtoId);
 	}
 	
-	@Override
-	public ProductDto getProduct(String productDtoId) {
-		Product product = productRepository.findById(productDtoId).orElse(null);
-		return mapper.map(product, ProductDto.class);
-	}
 	
-	@Override
-	public List<ProductDto> getAllProduct() {
-		List<Product> findAllproducts = productRepository.findAll();
-		List<ProductDto> productDtosList = findAllproducts.stream()
-				.map(product -> mapper.map(product, ProductDto.class)).collect(Collectors.toList());
-		return productDtosList;
-	}
+	
+	
 	
 	@Override
 	public List<ProductDto> searchProduct(int keyword) {

@@ -22,7 +22,6 @@ import com.ecom.services.ProductServices;
 
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
@@ -33,27 +32,11 @@ public class CategoryController {
 	@Autowired
 	private ProductServices productServices;
 
-	// create
-	@PostMapping
-	public ResponseEntity<CategoryDto> addEntity(@Valid @RequestBody CategoryDto categoryDto) {
-		CategoryDto addCategoryDto = categoryServices.addCategoryDto(categoryDto);
-		return new ResponseEntity<CategoryDto>(addCategoryDto, HttpStatus.CREATED);
-	}
-
-	// create product
-	@PostMapping("/{categoryId}/products")
-	public ResponseEntity<ProductDto> createProuct(@Valid @RequestBody ProductDto productDto,
-			@PathVariable String categoryId) {
-
-		ProductDto productDto2 = productServices.addProduct(productDto, categoryId);
-		return new ResponseEntity<ProductDto>(productDto2, HttpStatus.CREATED);
-	}
-
 	// get all
 	@GetMapping
 	public ResponseEntity<List<CategoryDto>> getAll() {
-		List<CategoryDto> allcaCategoryDtos = categoryServices.getAll();
-		return ResponseEntity.ok(allcaCategoryDtos);
+		List<CategoryDto> allCategoryDtos = categoryServices.getAll();
+		return ResponseEntity.ok(allCategoryDtos);
 	}
 
 	// get one
@@ -63,6 +46,29 @@ public class CategoryController {
 		return ResponseEntity.ok(categoryDto);
 	}
 
+	// create
+	@PostMapping
+	public ResponseEntity<CategoryDto> addEntity(@Valid @RequestBody CategoryDto categoryDto) {
+		CategoryDto addCategoryDto = categoryServices.addCategoryDto(categoryDto);
+		return new ResponseEntity<CategoryDto>(addCategoryDto, HttpStatus.CREATED);
+	}
+
+	// create product in category
+	@PostMapping("/{categoryId}/products")
+	public ResponseEntity<ProductDto> createProuct(@Valid @RequestBody ProductDto productDto,
+			@PathVariable String categoryId) {
+
+		ProductDto productDto2 = productServices.addProduct(productDto, categoryId);
+		return new ResponseEntity<ProductDto>(productDto2, HttpStatus.CREATED);
+	}
+
+	// update category of existing product
+	@PutMapping("/{categoryId}/products/{productId}")
+	public ResponseEntity<ProductDto> updateCategory(@PathVariable String categoryId, @PathVariable String productId) {
+		ProductDto updateProductCategory = productServices.updateProductCategory(categoryId, productId);
+		return ResponseEntity.ok(updateProductCategory);
+	}
+
 	// update
 	@PutMapping("/{categoryId}")
 	public ResponseEntity<CategoryDto> updatEntity(@PathVariable String categoryId,
@@ -70,13 +76,6 @@ public class CategoryController {
 		CategoryDto categoryDto2 = categoryServices.updateCategoryDto(categoryDto, categoryId);
 
 		return ResponseEntity.ok(categoryDto2);
-	}
-
-	// update category
-	@PostMapping("/{categoryId}/products/{productId}")
-	public ResponseEntity<ProductDto> updateCategory(@PathVariable String categoryId, @PathVariable String productId) {
-		ProductDto updateProductCategory = productServices.updateProductCategory(categoryId, productId);
-		return ResponseEntity.ok(updateProductCategory);
 	}
 
 	// delete

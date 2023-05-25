@@ -26,33 +26,15 @@ public class ProductController {
 	@Autowired
 	private ProductServices productServices;
 	
-	@PostMapping
-	public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto){
-		productServices.addProduct(productDto);
-		return new ResponseEntity<ProductDto>(productDto, HttpStatus.CREATED);
-	}
-	
-	@GetMapping("/{productDtoId}")
-	public ResponseEntity<ProductDto> getProduct(@PathVariable String productDtoId){
-		ProductDto productDto = productServices.getProduct(productDtoId);
-		return ResponseEntity.ok(productDto);
-	}
-	
 	@GetMapping
 	public ResponseEntity<List<ProductDto>> getAllProducts(){
 		List<ProductDto> productsDtos = productServices.getAllProduct();
 		return ResponseEntity.ok(productsDtos);
 	}
 	
-	@DeleteMapping("/{productDtoId}")
-	public ResponseEntity<ApiResponse> deleteProduct(@PathVariable String productDtoId){
-		productServices.deleteProduct(productDtoId);
-		return ResponseEntity.ok(ApiResponse.builder().message("product deleted").success(true).build());
-	}
-	
-	@PutMapping("/{productDtoId}")
-	public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto,@PathVariable String productDtoId){
-		productServices.updateProduct(productDto, productDtoId);
+	@GetMapping("/{productDtoId}")
+	public ResponseEntity<ProductDto> getProduct(@PathVariable String productDtoId){
+		ProductDto productDto = productServices.getProduct(productDtoId);
 		return ResponseEntity.ok(productDto);
 	}
 	
@@ -62,5 +44,22 @@ public class ProductController {
 		return ResponseEntity.ok(productDtos);
 	}
 	
+	@PostMapping
+	public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto){
+		productServices.addProduct(productDto);
+		return new ResponseEntity<ProductDto>(productDto, HttpStatus.CREATED);
+	}
+	
+	@PutMapping("/{productDtoId}")
+	public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto,@PathVariable String productDtoId){
+		productServices.updateProduct(productDto, productDtoId);
+		return ResponseEntity.ok(productDto);
+	}
+	
+	@DeleteMapping("/{productDtoId}")
+	public ResponseEntity<ApiResponse> deleteProduct(@PathVariable String productDtoId){
+		productServices.deleteProduct(productDtoId);
+		return ResponseEntity.ok(ApiResponse.builder().message("product deleted").success(true).build());
+	}
 	
 }
