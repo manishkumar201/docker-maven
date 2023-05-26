@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "eb93231f-2fa9-4b87-96db-5ba83b872724",
+		"_postman_id": "9558f6ce-d1ec-4727-acbe-6dc12700bd30",
 		"name": "ecom",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27640748"
 	},
 	"item": [
 		{
@@ -60,7 +61,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \n    \"colour\":\"yellooosw\",\n    \"model\":\"new\",\n    \"quantity\":23,\n    \"price\":101\n}",
+							"raw": "{\n    \"quantity\":23,\n    \"colour\":\"Starlight\",\n    \"model\":\"IPhone 14\",\n    \"price\":67999\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -142,7 +143,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/category/6a7fa927-f2f6-45ee-92aa-cf5371fe0fa3/products",
+							"raw": "http://localhost:8080/category/b7e20b2c-9c68-46a6-828f-177f26c2ae47/products",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -150,7 +151,7 @@
 							"port": "8080",
 							"path": [
 								"category",
-								"6a7fa927-f2f6-45ee-92aa-cf5371fe0fa3",
+								"b7e20b2c-9c68-46a6-828f-177f26c2ae47",
 								"products"
 							]
 						}
@@ -172,7 +173,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/category/07fb40cc-54f7-41e6-ab5a-24a7d47ab9a3/products/dbc48b84-e731-4e6e-bc5c-1b4deaece2c1",
+							"raw": "http://localhost:8080/category/b7e20b2c-9c68-46a6-828f-177f26c2ae47/products/76a9d7ab-494b-4279-8a66-49e13be9e98b",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -180,9 +181,9 @@
 							"port": "8080",
 							"path": [
 								"category",
-								"07fb40cc-54f7-41e6-ab5a-24a7d47ab9a3",
+								"b7e20b2c-9c68-46a6-828f-177f26c2ae47",
 								"products",
-								"dbc48b84-e731-4e6e-bc5c-1b4deaece2c1"
+								"76a9d7ab-494b-4279-8a66-49e13be9e98b"
 							]
 						}
 					},
@@ -260,7 +261,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"categoryName\":\"Groceries\"\n}",
+							"raw": "{\n    \"categoryName\":\"Smartphone\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
